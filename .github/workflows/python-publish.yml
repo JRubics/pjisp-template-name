@@ -1,0 +1,22 @@
+name: Python package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Change version in pyproject.toml
+      run: |
+        REF=$(echo ${{ github.ref }} | sed "s#\(refs/tags/\)\?v\?##")
+        sed -i "s/^version = \".\+\"/version = \"$REF\"/" pyproject.toml
+    - name: Build and publish to pypi
+      uses: JRubics/poetry-publish@v1.1
+      with:
+        pypi_token: ${{ secrets.PYPI_TOKEN }}
