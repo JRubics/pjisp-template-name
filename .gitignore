@@ -1,0 +1,8 @@
+# poetry publish
+dist/
+
+# byte code
+pjisp_template_name/__init__.pyc
+
+# egg-info
+pjisp_template_name.egg-info/
