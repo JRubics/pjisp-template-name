@@ -4,6 +4,19 @@ version = "0.1.0"
 description = "PJISP get template name from repository name"
 authors = ["Jelena Dokic <jrubics@hacke.rs>"]
 license = "BSD-3-Clause"
+readme = "README.md"
+homepage = "https://github.com/JRubics/pjisp-template-name"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 2.7",
+    "Topic :: Education",
+    "Topic :: Utilities",
+]
 
 [tool.poetry.dependencies]
 python = "^2.7"
