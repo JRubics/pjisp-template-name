@@ -12,9 +12,9 @@ LENGTH_MESSAGE = 'Repository name length not valid'
 PROGRAMS = ('E214', 'E111')
 TEMPLATES = ('T12', 'T34', 'SOV')
 
-def check_pjisp(pjisp):
-    if pjisp != 'pjisp':
-        logging.error(ERROR_MESSAGE.format(pjisp))
+def check_text(text, value):
+    if text != value:
+        logging.error(ERROR_MESSAGE.format(value))
         exit(1)
 
 def check_year(year):
@@ -45,17 +45,24 @@ def check_group(group):
         exit(1)
 
 def check_repo_name(repo_name):
-    try:
-        pjisp, year, program, template, group = repo_name.split("-")
-    except ValueError:
+    splits = repo_name.split("-")
+    if len(splits) not in (5, 7):
         logging.error(LENGTH_MESSAGE)
         exit(1)
 
-    check_pjisp(pjisp)
+    pjisp, year, program, template, group = splits[0:5]
+    check_text("pjisp", pjisp)
     check_year(year)
     check_program(program)
     check_template(template)
     check_group(group)
+
+    try:
+        sample, test = splits[5:7]
+        check_text("sample", sample)
+        check_text("test", test)
+    except ValueError:
+        pass
 
     return template
 
